@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
+
+import Layout from './components/Common/Layout/Layout';
+import ListItems from './containers/ListItems/ListItems';
+import Cart from './containers/Cart/Cart';
+import SellItems from './containers/SellItem/SellItem';
+import NoPageFound from './containers/NoPageFound/NoPageFound';
+
+
 
 class App extends Component {
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+
+        <BrowserRouter>
+          <Layout>
+              <Switch>
+                <Route exact path="/" render={()=><ListItems/>}/>
+                <Route exact path="/cart" render={()=><Cart/>}/>
+                <Route exact path="/sell-item" render={()=><SellItems/>}/>
+                <Route component={NoPageFound}/>
+            </Switch>
+          </Layout>
+        </BrowserRouter>
     );
   }
 }
