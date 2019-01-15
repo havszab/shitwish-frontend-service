@@ -44,6 +44,7 @@ class Cart extends Component {
             <div>
                 <Items items={this.state.items} clicked={this.removeItemHandler}/>
                 <p>TOTAL: {this.getTotalPriceHandler}</p>
+                <button>Proceed to payment</button>
             </div>
         );
     }
