@@ -2,39 +2,19 @@ import React, {Component} from 'react';
 import Items from "./Items/Items";
 import axios from "axios";
 
-const removeUrlBase = "ip:port/removeItem?buyerId=";
+const removeUrlBase = "http://ip:port/removeItem?buyerId=";
 const itemUrlPart = "&itemId=";
-const getItemsUrl = "http://ip:port/cartitems?buyerId=";
+const getItemsUrl = "http://192.168.163.139:8762/cart-service/cartitems?buyerId=";
 
 class Cart extends Component {
 
     state = {
         totalPrice: 0,
-        items: [
-            {
-                id: 1,
-                name: "1111",
-                price: 9.99
-            },
-            {
-                id: 2,
-                name: "2222",
-                price: 9.99
-            },
-            {
-                id: 3,
-                name: "3333",
-                price: 1.22
-            }, {
-                id: 4,
-                name: "4444",
-                price: 9.99
-            }
-        ]
+        items: null
     };
 
     componentDidMount() {
-        axios.get(getItemsUrl + 1 /*==userId*/)
+        axios.get(getItemsUrl + 1)
             .then(response => {
                 console.log("getting data: " + response.data);
                 this.setState({items: response.data});
@@ -74,12 +54,36 @@ class Cart extends Component {
         return (
             <div>
                 <p>Your cart:</p>
-                <Items items={this.state.items} clicked={this.removeItemHandler}/>
+                {this.state.items ? <Items items={this.state.items} clicked={this.removeItemHandler}/> : <p>No items in cart yet.</p>}
                 <p>TOTAL: {this.state.totalPrice}</p>
                 <button>Proceed to payment</button>
             </div>
         );
     }
 }
+
+/*
+* [
+            {
+                id: 1,
+                name: "1111",
+                price: 9.99
+            },
+            {
+                id: 2,
+                name: "2222",
+                price: 9.99
+            },
+            {
+                id: 3,
+                name: "3333",
+                price: 1.22
+            }, {
+                id: 4,
+                name: "4444",
+                price: 9.99
+            }
+        ]
+* */
 
 export default Cart;
