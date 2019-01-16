@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Items from "./Items/Items";
 import axios from "axios";
 
-const ZUULip = "192.168.163.128";
+const ZUULip = "192.168.160.128";
 const removeUrlBase = "http://" + ZUULip + ":8762/cart-service/removeItem?buyerId=";
 const itemUrlPart = "&itemId=";
 const getItemsUrl = "http://" + ZUULip + ":8762/cart-service/cartitems?buyerId=";
@@ -16,9 +16,10 @@ class Cart extends Component {
     };
 
     componentDidMount() {
-        axios.get(simpleItemUrl)
+        axios.get(getItemsUrl + 1)
             .then(response => {
                 console.log("getting data: " + response.data);
+                //console.log()
                 this.setState({items: response.data});
                 this.getTotalPriceHandler();
             })
