@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Items from "../../components/Items/Items";
 import axios from "axios";
 
-const ZUULip = "192.168.160.128";
+const ZUULip = "192.168.160.182";
 const removeUrlBase = "http://" + ZUULip + ":8762/cart-service/removeItem?buyerId=";
 const itemUrlPart = "&itemId=";
 const getItemsUrl = "http://" + ZUULip + ":8762/cart-service/cartitems?buyerId=";
