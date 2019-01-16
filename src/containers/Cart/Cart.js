@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Items from "./Items/Items";
+import Items from "../../components/Items/Items";
 import axios from "axios";
 
 const removeUrlBase = "http://ip:port/removeItem?buyerId=";
