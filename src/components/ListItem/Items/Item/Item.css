@@ -1,0 +1,8 @@
+.Item{
+    height: 300px;
+    max-width: 200px;
+    padding: 10px;
+    margin: 10px 10px;
+    box-shadow: 0 4px 6px #000;
+    flex: 1 0 21%; /* explanation below */
+}

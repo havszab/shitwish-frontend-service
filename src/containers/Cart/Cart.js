@@ -2,19 +2,21 @@ import React, {Component} from 'react';
 import Items from "./Items/Items";
 import axios from "axios";
 
-const removeUrlBase = "http://ip:port/removeItem?buyerId=";
+const ZUULip = "192.168.163.128";
+const removeUrlBase = "http://" + ZUULip + ":8762/cart-service/removeItem?buyerId=";
 const itemUrlPart = "&itemId=";
-const getItemsUrl = "http://192.168.163.139:8762/cart-service/cartitems?buyerId=";
+const getItemsUrl = "http://" + ZUULip + ":8762/cart-service/cartitems?buyerId=";
+const simpleItemUrl = "http://" + ZUULip + ":8762/item-service/items";
 
 class Cart extends Component {
 
     state = {
         totalPrice: 0,
-        items: null
+        items: [],
     };
 
     componentDidMount() {
-        axios.get(getItemsUrl + 1)
+        axios.get(simpleItemUrl)
             .then(response => {
                 console.log("getting data: " + response.data);
                 this.setState({items: response.data});
@@ -41,6 +43,7 @@ class Cart extends Component {
             .then(response => {
                 oldState = {...oldState.items.splice(index, 1)};
                 this.setState({...oldState})
+                this.getTotalPriceHandler()
             })
             .catch(error => {
                     console.log("Removing item failed: " + error)
@@ -55,7 +58,7 @@ class Cart extends Component {
             <div>
                 <p>Your cart:</p>
                 {this.state.items ? <Items items={this.state.items} clicked={this.removeItemHandler}/> : <p>No items in cart yet.</p>}
-                <p>TOTAL: {this.state.totalPrice}</p>
+                <p>TOTAL: {this.state.totalPrice}$</p>
                 <button>Proceed to payment</button>
             </div>
         );

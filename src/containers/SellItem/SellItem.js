@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
+
 class SellItem extends Component {
+
+
+
     render() {
         return (
             <div>
