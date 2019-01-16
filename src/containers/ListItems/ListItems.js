@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import axios from 'axios';
+//import axios from 'axios';
 import Items from '../../components/ListItem/Items/Items';
 import Item from '../../components/ListItem/Items/Item/Item';
 
