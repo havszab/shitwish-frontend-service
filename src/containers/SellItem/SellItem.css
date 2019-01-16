@@ -1,0 +1,30 @@
+
+h1{
+    text-align: center;
+}
+
+
+form * {
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+    font-size: 2em;
+}
+
+form input {
+    text-align: left;
+    padding: 3px;
+}
+
+button {
+    color: #61dafb;
+    background-color: whitesmoke;
+    margin: 30px auto ;
+    border-color: #61dafb;
+    border-radius: 5%;
+}
+
+input {
+    border-radius: 5%;
+}
