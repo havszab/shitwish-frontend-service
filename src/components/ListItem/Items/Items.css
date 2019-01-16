@@ -1,0 +1,5 @@
+.Items{
+    margin: 100px 120px;
+    display: flex;
+    flex-wrap: wrap;
+}

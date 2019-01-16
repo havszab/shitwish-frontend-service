@@ -1,11 +1,16 @@
 import React from 'react';
 
+import classes from './Footer.css';
+
 const footer = () => {
     return (
-        <div>
-            <div>ITEM1</div>
-            <div>ITEM2</div>
-            <div>ITEM3</div>
+        <div className={classes.Footer}>
+            <ul>
+                <li>About us</li>
+                <li>Privacy Policy</li>
+                <li>Contact</li>
+                <li></li>
+            </ul>
         </div>
     );
 };
