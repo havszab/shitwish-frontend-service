@@ -1,13 +1,42 @@
 .Item {
     border: 1px solid lightslategrey;
-    margin: 2px;
+    margin: 2px 0px 0px 10%;
+    width: 50%;
+}
+
+.Item:hover {
+    border: 1px solid lightslategrey;
+    margin: 2px 0px 0px 12%;
+    width: 50%;
 }
 
 .Item div {
     display: inline;
-    padding: 3px;
 }
 
-button {
-    margin: 3px;
+.Price {
+    font-weight: bold;
+    margin-right: 10%;
+}
+
+.Button-warning {
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    border-radius: 0;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+    color: white;
+}
+
+.Button-warning:hover {
+    height: 30px;
+    width: 30px;
+    background-color: darkred;
+    border-radius: 0;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+    color: white;
 }
