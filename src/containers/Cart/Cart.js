@@ -3,12 +3,10 @@ import Items from "../../components/Items/Items";
 import axios from "axios";
 import {Link} from 'react-router-dom';
 
-const ip = "http://192.168.160.178:8762";
 const ZUULserviceURL = "https://shitwish-zuul.azurewebsites.net";
 const removeUrlBase = ZUULserviceURL + "/cart-service/removeItem?buyerId=";
 const itemUrlPart = ZUULserviceURL + "&itemId=";
-const getItemsUrl = ip + "/cart-service/cartitems?buyerId=";
-//const simpleItemUrl = ZUULserviceURL + "/item-service/items";
+const getItemsUrl = ZUULserviceURL + "/cart-service/cartitems?buyerId=";
 
 class Cart extends Component {
 
