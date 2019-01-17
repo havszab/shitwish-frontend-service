@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import classes from "../../containers/SellItem/SellItem.css"
 
 class PaymentInfoForm extends Component {
 
@@ -66,7 +67,7 @@ class PaymentInfoForm extends Component {
                         <input placeholder={"Credit card number"} type="creditCardNumber" name="creditCardNumber" value={this.state.creditCardNumber} onChange={this.handleChange}/>
                     </div>
 
-                    <button>Pay {this.props.total}$</button>
+                    <button className={classes.SubmitButton}>Submit payment</button>
                 </form>
             </div>
         );

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './SellItem.css';
 import axios from "axios";
+import classes from "./SellItem.css"
 
 const postItemUrl = "http://192.168.160.182:8762/item-service/items";
 
@@ -66,7 +67,7 @@ class SellItem extends Component {
                            placeholder="Picture URL"
                            required
                            onChange={this.handleChange}/>
-                    <button onClick={this.itemPostHandler}>Submit</button>
+                    <button className={classes.SubmitButton} onClick={this.itemPostHandler}>Submit</button>
                 </form>
 
             </div>

@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import Items from "../../components/Items/Items";
+import Items from "../../components/CartItems/Items";
 import axios from "axios";
 import {Link} from 'react-router-dom';
+import classes from "./Cart.css"
 
-const ZUULserviceURL = "https://shitwish-zuul.azurewebsites.net";
+const ZUULserviceURL = "http://192.168.163.144:8762";
 const removeUrlBase = ZUULserviceURL + "/cart-service/removeItem?buyerId=";
-const itemUrlPart = ZUULserviceURL + "&itemId=";
+const itemUrlPart = "&itemId=";
 const getItemsUrl = ZUULserviceURL + "/cart-service/cartitems?buyerId=";
 
 class Cart extends Component {
 
     state = {
-        userId: 1,
+        userId: 3,
         totalPrice: 0,
         items: []
     };
@@ -39,9 +40,10 @@ class Cart extends Component {
     };
 
     removeItemHandler = (index) => {
-        let oldState = {...this.state}
-        console.log(index)
-        axios.delete(removeUrlBase + this.state.userId + itemUrlPart + index)
+        let oldState = {...this.state};
+        const url = removeUrlBase + this.state.userId + itemUrlPart + index;
+        console.log(index);
+        axios.delete(url)
             .then(response => {
                 oldState = {...oldState.items.splice(index, 1)};
                 this.setState({...oldState})
@@ -57,11 +59,12 @@ class Cart extends Component {
 
         return (
             <div>
-                <p>Your cart:</p>
-                {this.state.items || this.state.items.length === 0 ? <Items items={this.state.items} clicked={this.removeItemHandler}/> :
+                <h1>Your cart</h1>
+                {this.state.items || this.state.items.length === 0 ?
+                    <table><Items items={this.state.items} clicked={this.removeItemHandler}/></table>  :
                     <p>No items in cart yet.</p>}
                 <p>TOTAL: {this.state.totalPrice}$</p>
-                <button><Link to="/payment">Proceed to payment</Link></button>
+                <button className={classes.SubmitButton}><Link to="/payment">Proceed to payment</Link></button>
             </div>
         );
     }
