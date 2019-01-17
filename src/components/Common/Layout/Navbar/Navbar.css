@@ -1,3 +1,8 @@
+.Navbar{
+    background-color: #efefef;
+    color: #767676;
+}
+
 
 .Navbar ul {
     margin: 0;
@@ -10,10 +15,6 @@
 
 
 .Navbar li {
-    padding: 10px;
-    text-decoration: none;
-    border-left: 2px solid darkgrey;
-    color: grey;
     font-family: proxima-nova, sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -24,6 +25,19 @@
     width: 100%;
 }
 
+
+.Navbar a{
+    padding: 10px;
+    border-left: 3px solid darkgrey;
+    color: #767676;;
+    -webkit-transition: color 0.2s;
+    -moz-transition: color 0.2s;
+    -o-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+
 .Navbar a:hover{
-    color : orange;
+    border-left: 3px solid #ff5c47;
+    color : #ff5c47;
 }

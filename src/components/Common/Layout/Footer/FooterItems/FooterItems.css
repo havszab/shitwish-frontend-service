@@ -1,0 +1,10 @@
+.FooterItems{
+    margin: 0;
+    padding: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    justify-content: space-between;
+    height: 100%;
+}

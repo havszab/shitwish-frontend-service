@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import Items from "./Items/Items";
 import axios from "axios";
 
-const ZUULip = "192.168.163.128";
+const ZUULip = "192.168.160.182";
 const removeUrlBase = "http://" + ZUULip + ":8762/cart-service/removeItem?buyerId=";
 const itemUrlPart = "&itemId=";
-const getItemsUrl = "http://" + ZUULip + ":8762/cart-service/cartitems?buyerId=";
-const simpleItemUrl = "http://" + ZUULip + ":8762/item-service/items";
+const getItemsUrl = "http://" + ZUULip + ":8762/cart-service/cartitems?buyerId=1";
+// const simpleItemUrl = "http://" + ZUULip + ":8762/item-service/items";
 
 class Cart extends Component {
 
@@ -16,7 +16,7 @@ class Cart extends Component {
     };
 
     componentDidMount() {
-        axios.get(simpleItemUrl)
+        axios.get(getItemsUrl)
             .then(response => {
                 console.log("getting data: " + response.data);
                 this.setState({items: response.data});

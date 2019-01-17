@@ -1,4 +1,8 @@
+.Logo{
+    height : 130px;
+}
 
 .Logo img{
-    height: 180px;
+    height : 130px;
+    margin-left: 30px;
 }
