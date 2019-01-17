@@ -4,74 +4,39 @@ import React, {Component} from 'react';
 import Items from '../../components/ListItem/Items/Items';
 import Item from '../../components/ListItem/Items/Item/Item';
 
-
+const ZUULip = "192.168.160.182";
+const addUrlBase = "http://" + ZUULip + ":8762/cart-service/itemToCart?buyerId=1&itemId=1";
+// const itemUrlPart = "&itemId=";
+// const getItemsUrl = "http://" + ZUULip + ":8762/cart-service/cartitems?buyerId=";
+const simpleItemUrl = "http://" + ZUULip + ":8762/item-service/items";
 
 class ListItems extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data : [
-                {
-                    "id": 1,
-                    "name": "Stick",
-                    "price": 100,
-                    "available": true,
-                    "img": "https://vignette.wikia.nocookie.net/tokipona/images/a/aa/Stick.png/revision/latest?cb=20171120043817",
-                    "uploadDate": "2019-01-15",
-                    "sellerId": 1
-                },
-                {
-                    "id": 2,
-                    "name": "Shit",
-                    "price": 1500,
-                    "available": true,
-                    "img": "https://http2.mlstatic.com/almofada-emoticon-emoji-cocozinho-pou-grande-40x40-whatsapp-D_NQ_NP_635411-MLB20557478677_012016-F.jpg",
-                    "uploadDate": "2019-01-15",
-                    "sellerId": 2
-                },
-                {
-                    "id": 3,
-                    "name": "Trash",
-                    "price": 1300,
-                    "available": true,
-                    "img": "https://toppng.com/public/uploads/preview/trash-can-11530995314kgh8pawz8u.png",
-                    "uploadDate": "2019-01-15",
-                    "sellerId": 1
-                },
-                {
-                    "id": 4,
-                    "name": "Wonder Woman",
-                    "price": 0,
-                    "available": true,
-                    "img": "https://www.clipartmax.com/png/middle/195-1951557_wonder-woman-png-edit-justice-league-by-bp251-wonder-woman-gal-gadot.png",
-                    "uploadDate": "2019-01-15",
-                    "sellerId": 1
-                },
-                {
-                    "id": 5,
-                    "name": "Little boy",
-                    "price": 99,
-                    "available": true,
-                    "img": "https://clipart.info/images/ccovers/1496252513Justin-Bieber-PNG-Picture-2017.png",
-                    "uploadDate": "2019-01-15",
-                    "sellerId": 2
-                }
-            ],
+            data : [],
             error : null,
         };
     }
 
 
-    // componentDidMount(){
-    //     const ITEMSURL = "http://192.168.160.165:8081/items";
-    //
-    //     axios.get(ITEMSURL)
-    //         .then(response =>{
-    //          console.log(response.data);
-    //          this.setState({ data: response.data })
-    //         })
-    //         .catch(error => this.setState({ error: error }));
-    // }
+    componentDidMount(){
+        axios.get(simpleItemUrl)
+            .then(response =>{
+             console.log(response.data);
+             this.setState({ data: response.data })
+            })
+            .catch(error => this.setState({ error: error }));
+    }
+
+
+    addToCartHandler=()=>{
+      axios.post(addUrlBase)
+          .then(response =>{
+            this.setState({ data: response.data })
+            })
+          .catch(error => this.setState({ error: error }));
+    };
 
 
 
@@ -89,12 +54,56 @@ class ListItems extends Component {
                         : null);
 
         return (
-            <Items>
+            <Items addToCart={this.addToCartHandler}>
                 {items}
             </Items>
         );
     }
 }
 
-
+// {
+//     "id": 1,
+//     "name": "Stick",
+//     "price": 100,
+//     "available": true,
+//     "img": "https://vignette.wikia.nocookie.net/tokipona/images/a/aa/Stick.png/revision/latest?cb=20171120043817",
+//     "uploadDate": "2019-01-15",
+//     "sellerId": 1
+// },
+// {
+//     "id": 2,
+//     "name": "Shit",
+//     "price": 1500,
+//     "available": true,
+//     "img": "https://http2.mlstatic.com/almofada-emoticon-emoji-cocozinho-pou-grande-40x40-whatsapp-D_NQ_NP_635411-MLB20557478677_012016-F.jpg",
+//     "uploadDate": "2019-01-15",
+//     "sellerId": 2
+// },
+// {
+//     "id": 3,
+//     "name": "Trash",
+//     "price": 1300,
+//     "available": true,
+//     "img": "https://toppng.com/public/uploads/preview/trash-can-11530995314kgh8pawz8u.png",
+//     "uploadDate": "2019-01-15",
+//     "sellerId": 1
+// },
+// {
+//     "id": 4,
+//     "name": "Wonder Woman",
+//     "price": 0,
+//     "available": true,
+//     "img": "https://www.clipartmax.com/png/middle/195-1951557_wonder-woman-png-edit-justice-league-by-bp251-wonder-woman-gal-gadot.png",
+//     "uploadDate": "2019-01-15",
+//     "sellerId": 1
+// },
+// {
+//     "id": 5,
+//     "name": "Little boy",
+//     "price": 99,
+//     "available": true,
+//     "img": "https://clipart.info/images/ccovers/1496252513Justin-Bieber-PNG-Picture-2017.png",
+//     "uploadDate": "2019-01-15",
+//     "sellerId": 2
+// }
 export default ListItems;
