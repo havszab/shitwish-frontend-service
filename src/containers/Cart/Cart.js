@@ -4,7 +4,7 @@ import axios from "axios";
 import {Link} from 'react-router-dom';
 import classes from "./Cart.css"
 
-const ZUULserviceURL = "http://192.168.163.144:8762";
+const ZUULserviceURL = "http://192.168.160.139:8762";
 const removeUrlBase = ZUULserviceURL + "/cart-service/removeItem?buyerId=";
 const itemUrlPart = "&itemId=";
 const getItemsUrl = ZUULserviceURL + "/cart-service/cartitems?buyerId=";

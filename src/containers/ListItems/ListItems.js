@@ -4,7 +4,7 @@ import axios from 'axios';
 import Items from '../../components/ListItem/Items/Items';
 import Item from '../../components/ListItem/Items/Item/Item';
 
-const ZUULip = "http://192.168.163.144:8762";
+const ZUULip = "http://192.168.160.139:8762";
 const addUrlBase = ZUULip + "/cart-service/itemToCart?buyerId=1&itemId=1";
 const simpleItemUrl = ZUULip + "/item-service/items";
 

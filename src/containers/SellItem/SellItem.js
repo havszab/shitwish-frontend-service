@@ -3,7 +3,7 @@ import './SellItem.css';
 import axios from "axios";
 import classes from "./SellItem.css"
 
-const postItemUrl = "http://192.168.160.182:8762/item-service/items";
+const postItemUrl = "http://192.168.160.139:8762/item-service/items";
 
 
 class SellItem extends Component {
@@ -38,6 +38,7 @@ class SellItem extends Component {
                     console.log("Posting item failed: " + error)
                 }
             );
+        console.log("post request sent");
     };
 
 
@@ -45,7 +46,7 @@ class SellItem extends Component {
         return (
             <div>
                 <h1>Post an item to sell</h1>
-                <form action='/'>
+                <form>
                     <p>Item details</p>
                     <input name="name"
                            id="name"
@@ -67,7 +68,7 @@ class SellItem extends Component {
                            placeholder="Picture URL"
                            required
                            onChange={this.handleChange}/>
-                    <button className={classes.SubmitButton} onClick={this.itemPostHandler}>Submit</button>
+                    <p onClick={this.itemPostHandler}>Submit</p>
                 </form>
 
             </div>
