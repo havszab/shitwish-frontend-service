@@ -1,0 +1,41 @@
+.Button{
+    width: 90px;
+    height: 35px;
+    color: white;
+    font-family: proxima-nova, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: #ff5c47;
+    padding: 10px 20px;
+    margin: 10px auto;
+    text-align: center;
+    vertical-align: center;
+}
+
+
+
+.Button:hover{
+    color: #ff5c47;
+    background-color: white;
+    border-top: 3px solid #ff5c47;
+    border-bottom: 3px solid #ff5c47;
+    cursor: pointer;
+}
+
+.Button:active{
+    width: 85px;
+    height: 30px;
+    transform: translateY(3px);;
+}
+
+.Danger{
+    color: lightgrey;
+    background-color: darkred;
+}
+
+
+
+.Success{
+    color: lightgrey;
+    background-color: #ff5c47;
+}

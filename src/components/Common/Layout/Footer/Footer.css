@@ -1,27 +1,42 @@
 .Footer{
-    margin-top: 100px;
-    background-color: grey;
-    color: lightgrey;
-    bottom: 0;
-}
-
-.Footer ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-    height: 100%;
-
-}
-
-
-.Footer li {
-    padding: 50px 0;
-    margin: 0 0 0 200px;
-    font-family: proxima-nova, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    box-sizing: border-box;
-    display: block;
-    font-size: 24px;
+    height: 200px;
     width: 100%;
+    bottom: -200px;
+    background-color: #efefef;
+    color: #767676;
+    font-family: proxima-nova, sans-serif;
+    position: relative;
+
 }
+
+
+
+/*.Footer{*/
+    /*width: 100%;*/
+    /*margin: 100px 0;*/
+    /*background-color: #efefef;*/
+    /*color: #767676;*/
+    /*bottom: 0;*/
+    /*align-items: center;*/
+/*}*/
+
+/*.Footer ul {*/
+    /*padding: 0;*/
+    /*list-style: none;*/
+    /*display: flex;*/
+    /*height: 100%;*/
+
+/*}*/
+
+
+/*.Footer li {*/
+    /*padding: 50px 0;*/
+    /*margin: 0 0 0 200px;*/
+    /*font-family: proxima-nova, sans-serif;*/
+    /*font-style: normal;*/
+    /*font-weight: 500;*/
+    /*box-sizing: border-box;*/
+    /*display: block;*/
+    /*font-size: 24px;*/
+    /*width: 100%;*/
+/*}*/

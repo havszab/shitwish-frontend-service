@@ -1,14 +1,21 @@
 import React from 'react';
 
-import Logo from '../../../../assets/images/tempLogo.png'
 import classes from './Logo.css';
+import {Link} from "react-router-dom";
 
 
 const logo = () => {
+
+
     return (
+        <Link to={'/'}>
             <div className={classes.Logo}>
-                <img src={Logo} alt="ShitWishLogo"/>
+                <img src={require('../../../../assets/images/org-Logo.png')} alt="ShitWishLogo"
+                     onMouseOver={e => (e.currentTarget.src = require('../../../../assets/images/full-Logo.png'))}
+                     onMouseOut={e => (e.currentTarget.src = require('../../../../assets/images/org-Logo.png'))}
+                />
             </div>
+        </Link>
     );
 };
 
