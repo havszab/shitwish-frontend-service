@@ -3,7 +3,7 @@ import './SellItem.css';
 import axios from "axios";
 import {Link} from "react-router-dom";
 
-const postItemUrl = "https://shitwish-zuul.azurewebsites.net/item-service/items";
+const postItemUrl = "http://192.168.160.178:8762/item-service/items";
 
 
 class SellItem extends Component {
