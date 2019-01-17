@@ -3,7 +3,6 @@ h1{
     text-align: center;
 }
 
-
 form * {
     text-align: center;
     display: block;
@@ -18,13 +17,14 @@ form input {
 }
 
 button {
-    color: #61dafb;
+    color: orange;
     background-color: whitesmoke;
     margin: 30px auto ;
-    border-color: #61dafb;
+    border-color: orange;
     border-radius: 5%;
 }
 
 input {
     border-radius: 5%;
 }
+
