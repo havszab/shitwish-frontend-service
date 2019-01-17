@@ -3,71 +3,26 @@ import Items from "../../components/Items/Items";
 import axios from "axios";
 import {Link} from 'react-router-dom';
 
-
+const ip = "http://192.168.160.178:8762";
 const ZUULserviceURL = "https://shitwish-zuul.azurewebsites.net";
-const removeUrlBase = "/cart-service/removeItem?buyerId=";
-const itemUrlPart = "&itemId=";
-//const getItemsUrl = "/cart-service/cartitems?buyerId=";
-const simpleItemUrl = "/item-service/items";
+const removeUrlBase = ZUULserviceURL + "/cart-service/removeItem?buyerId=";
+const itemUrlPart = ZUULserviceURL + "&itemId=";
+const getItemsUrl = ip + "/cart-service/cartitems?buyerId=";
+//const simpleItemUrl = ZUULserviceURL + "/item-service/items";
 
 class Cart extends Component {
 
     state = {
+        userId: 1,
         totalPrice: 0,
-        items: [
-            {
-                "id": 1,
-                "name": "Stick",
-                "price": 100,
-                "available": true,
-                "img": "https://vignette.wikia.nocookie.net/tokipona/images/a/aa/Stick.png/revision/latest?cb=20171120043817",
-                "uploadDate": "2019-01-15",
-                "sellerId": 1
-            },
-            {
-                "id": 2,
-                "name": "Shit",
-                "price": 1500,
-                "available": true,
-                "img": "https://http2.mlstatic.com/almofada-emoticon-emoji-cocozinho-pou-grande-40x40-whatsapp-D_NQ_NP_635411-MLB20557478677_012016-F.jpg",
-                "uploadDate": "2019-01-15",
-                "sellerId": 2
-            },
-            {
-                "id": 3,
-                "name": "Trash",
-                "price": 1300,
-                "available": true,
-                "img": "https://toppng.com/public/uploads/preview/trash-can-11530995314kgh8pawz8u.png",
-                "uploadDate": "2019-01-15",
-                "sellerId": 1
-            },
-            {
-                "id": 4,
-                "name": "Wonder Woman",
-                "price": 10001,
-                "available": true,
-                "img": "https://www.clipartmax.com/png/middle/195-1951557_wonder-woman-png-edit-justice-league-by-bp251-wonder-woman-gal-gadot.png",
-                "uploadDate": "2019-01-15",
-                "sellerId": 1
-            },
-            {
-                "id": 5,
-                "name": "Little boy",
-                "price": 99,
-                "available": true,
-                "img": "https://clipart.info/images/ccovers/1496252513Justin-Bieber-PNG-Picture-2017.png",
-                "uploadDate": "2019-01-15",
-                "sellerId": 2
-            }
-        ]
+        items: []
     };
 
     componentDidMount() {
-        axios.get(simpleItemUrl)
+        axios.get(getItemsUrl + this.state.userId)
             .then(response => {
                 console.log("getting data: " + response.data);
-                console.log(this.state)
+                console.log(this.state);
                 this.setState({items: response.data});
                 this.getTotalPriceHandler();
             })
@@ -88,7 +43,7 @@ class Cart extends Component {
     removeItemHandler = (index) => {
         let oldState = {...this.state}
         console.log(index)
-        axios.delete(removeUrlBase + 1 /*==userId*/ + itemUrlPart + index)
+        axios.delete(removeUrlBase + this.state.userId + itemUrlPart + index)
             .then(response => {
                 oldState = {...oldState.items.splice(index, 1)};
                 this.setState({...oldState})
@@ -105,7 +60,7 @@ class Cart extends Component {
         return (
             <div>
                 <p>Your cart:</p>
-                {this.state.items ? <Items items={this.state.items} clicked={this.removeItemHandler}/> :
+                {this.state.items || this.state.items.length === 0 ? <Items items={this.state.items} clicked={this.removeItemHandler}/> :
                     <p>No items in cart yet.</p>}
                 <p>TOTAL: {this.state.totalPrice}$</p>
                 <button><Link to="/payment">Proceed to payment</Link></button>
