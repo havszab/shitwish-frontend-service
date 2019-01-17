@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './SellItem.css';
 import axios from "axios";
-import {Link} from "react-router-dom";
+import classes from "./SellItem.css"
 
 const postItemUrl = "http://192.168.160.182:8762/item-service/items";
 
@@ -28,17 +28,17 @@ class SellItem extends Component {
         this.setState({
             [name]: value
         });
-    }
+    };
 
 
-    itemPostHandler = (index) => {
-        console.log(this.state)
+    itemPostHandler = () => {
+        console.log(this.state);
         axios.post(postItemUrl, this.state)
             .catch(error => {
                     console.log("Posting item failed: " + error)
                 }
             );
-    }
+    };
 
 
     render() {
@@ -51,23 +51,23 @@ class SellItem extends Component {
                            id="name"
                            placeholder="Item name"
                            required
-                           onChange={this.handleChange}></input>
+                           onChange={this.handleChange}/>
                     <input name="price"
                            id="price"
                            placeholder="Price"
                            required
-                           onChange={this.handleChange}></input>
+                           onChange={this.handleChange}/>
                     <input name="description"
                            id="description"
                            placeholder="Description"
                            required
-                           onChange={this.handleChange}></input>
+                           onChange={this.handleChange}/>
                     <input name="img"
                            id="img"
                            placeholder="Picture URL"
                            required
-                           onChange={this.handleChange}></input>
-                    <button onClick={this.itemPostHandler}>Submit</button>
+                           onChange={this.handleChange}/>
+                    <button className={classes.SubmitButton} onClick={this.itemPostHandler}>Submit</button>
                 </form>
 
             </div>

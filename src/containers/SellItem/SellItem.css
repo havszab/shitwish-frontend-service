@@ -8,20 +8,22 @@ form * {
     display: block;
     margin: auto;
     margin-top: 15px;
-    font-size: 2em;
+    font-size: 20px;
 }
 
 form input {
     text-align: left;
     padding: 3px;
+    width: 40%;
 }
 
-button {
+.SubmitButton {
     color: orange;
     background-color: whitesmoke;
     margin: 30px auto ;
     border-color: orange;
     border-radius: 5%;
+    cursor: pointer;
 }
 
 input {

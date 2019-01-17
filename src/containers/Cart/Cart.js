@@ -1,29 +1,32 @@
 import React, {Component} from 'react';
-import Items from "./Items/Items";
+import Items from "../../components/CartItems/Items";
 import axios from "axios";
+import {Link} from 'react-router-dom';
+import classes from "./Cart.css"
 
-const ZUULip = "192.168.160.182";
-const removeUrlBase = "http://" + ZUULip + ":8762/cart-service/removeItem?buyerId=";
+const ZUULserviceURL = "http://192.168.163.144:8762";
+const removeUrlBase = ZUULserviceURL + "/cart-service/removeItem?buyerId=";
 const itemUrlPart = "&itemId=";
-const getItemsUrl = "http://" + ZUULip + ":8762/cart-service/cartitems?buyerId=1";
-// const simpleItemUrl = "http://" + ZUULip + ":8762/item-service/items";
+const getItemsUrl = ZUULserviceURL + "/cart-service/cartitems?buyerId=";
 
 class Cart extends Component {
 
     state = {
+        userId: 3,
         totalPrice: 0,
-        items: [],
+        items: []
     };
 
     componentDidMount() {
-        axios.get(getItemsUrl)
+        axios.get(getItemsUrl + this.state.userId)
             .then(response => {
                 console.log("getting data: " + response.data);
+                console.log(this.state);
                 this.setState({items: response.data});
                 this.getTotalPriceHandler();
             })
             .catch(error => {
-                    console.log("Couldn't load items from cart: " + error)
+                    console.log("Couldn't load cart items: " + error)
                 }
             )
     }
@@ -31,62 +34,40 @@ class Cart extends Component {
     getTotalPriceHandler = () => {
         let totalPrice = 0;
         this.state.items.map(item => {
-            console.log(item);
-            totalPrice += item.price;
-        })
+            return totalPrice += item.price;
+        });
         this.setState({totalPrice: totalPrice})
-    }
+    };
 
     removeItemHandler = (index) => {
-        let oldState = {...this.state}
-        axios.delete(removeUrlBase + 1 /*==userId*/ + itemUrlPart + index)
+        let oldState = {...this.state};
+        const url = removeUrlBase + this.state.userId + itemUrlPart + index;
+        console.log(index);
+        axios.delete(url)
             .then(response => {
                 oldState = {...oldState.items.splice(index, 1)};
                 this.setState({...oldState})
                 this.getTotalPriceHandler()
             })
             .catch(error => {
-                    console.log("Removing item failed: " + error)
+                    console.log("Removing item from cart failed: " + error)
                 }
             );
-    }
-
+    };
 
     render() {
 
         return (
             <div>
-                <p>Your cart:</p>
-                {this.state.items ? <Items items={this.state.items} clicked={this.removeItemHandler}/> : <p>No items in cart yet.</p>}
+                <h1>Your cart</h1>
+                {this.state.items || this.state.items.length === 0 ?
+                    <table><Items items={this.state.items} clicked={this.removeItemHandler}/></table>  :
+                    <p>No items in cart yet.</p>}
                 <p>TOTAL: {this.state.totalPrice}$</p>
-                <button>Proceed to payment</button>
+                <button className={classes.SubmitButton}><Link to="/payment">Proceed to payment</Link></button>
             </div>
         );
     }
 }
-
-/*
-* [
-            {
-                id: 1,
-                name: "1111",
-                price: 9.99
-            },
-            {
-                id: 2,
-                name: "2222",
-                price: 9.99
-            },
-            {
-                id: 3,
-                name: "3333",
-                price: 1.22
-            }, {
-                id: 4,
-                name: "4444",
-                price: 9.99
-            }
-        ]
-* */
 
 export default Cart;

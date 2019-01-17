@@ -4,11 +4,9 @@ import axios from 'axios';
 import Items from '../../components/ListItem/Items/Items';
 import Item from '../../components/ListItem/Items/Item/Item';
 
-const ZUULip = "192.168.160.182";
-const addUrlBase = "http://" + ZUULip + ":8762/cart-service/itemToCart?buyerId=1&itemId=1";
-// const itemUrlPart = "&itemId=";
-// const getItemsUrl = "http://" + ZUULip + ":8762/cart-service/cartitems?buyerId=";
-const simpleItemUrl = "http://" + ZUULip + ":8762/item-service/items";
+const ZUULip = "http://192.168.163.144:8762";
+const addUrlBase = ZUULip + "/cart-service/itemToCart?buyerId=1&itemId=1";
+const simpleItemUrl = ZUULip + "/item-service/items";
 
 class ListItems extends Component {
     constructor(props){
